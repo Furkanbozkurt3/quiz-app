@@ -1,4 +1,4 @@
-.app-container{
+.app-container {
     width: 550px;
     position: absolute;
     top: 50%;
@@ -8,58 +8,53 @@
 .option-list {
     padding: 18px 10px;
 }
-#quiz-box #header{
+#quiz-box #header {
     display: flex;
     align-items: center;
     justify-content: space-between;
     position: relative;
 }
-
-.option-list .option{
+.option-list .option {
     border: 1px solid #151D3B;
     border-radius: 5px;
     padding: 8px 15px;
     font-size: 16px;
     margin-bottom: 10px;
     cursor: pointer;
-
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
-.option-list .option:hover{
+.option-list .option:hover {
     color: #112b2c;
     background: #ffd33d;
 }
-.option-list .option.correct{
+.option-list .option.correct {
     color: #155724;
     background: #d4edda;
 }
-.option-list .option.incorrect{
+.option-list .option.incorrect {
     color: #721c24;
     background: #f8d7da;
 }
-.option-list .option.disabled{
+.option-list .option.disabled {
     pointer-events: none;
 }
-.summary{
+.summary {
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
-
-/* score box */
-
-#score-box{
+#score-box {
     text-align: center;
     padding: 30px;
 }
-#score-box i{
+#score-box i {
     font-size: 90px;
     color: #007bff;
     margin-bottom: 10px;
 }
-#score-box .score-text{
+#score-box .score-text {
     font-size: 18px;
     font-weight: 500;
     margin-bottom: 10px;
@@ -67,16 +62,12 @@
 #button-box {
     text-align: center;
 }
-
 #button-box, #score-box, #quiz-box {
     display: none;
 }
 #button-box.active, #score-box.active, #quiz-box.active {
     display: block;
 }
-
-/* kalan süre */
-
 .time {
     display: flex;
     justify-content: space-between;
@@ -109,11 +100,85 @@
     pointer-events: all;
     transform: scale(1);
 }
-.time-line{
+.time-line {
     position: absolute;
     bottom: 0;
     left: 0;
     height: 4px;
     background: #f0a500;
-     width: 0;
+    width: 0%;
+}
+
+@media screen and (max-width: 1024px) {
+    .app-container {
+        width: 85%;
+        max-width: 520px;
+        top: 50%;
+    }
+    #quiz-box {
+        position: relative;
+        overflow: hidden;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .app-container {
+        width: 95%;
+        max-width: 480px;
+    }
+    #quiz-box #header {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        gap: 8px;
+    }
+    #quiz-box #header h2, 
+    #quiz-box #header h3, 
+    .app-title {
+        font-size: 16px;
+        margin: 0;
+    }
+    .time {
+        font-size: 13px;
+        padding: 4px 8px;
+        flex-shrink: 0;
+    }
+    .time .time-text {
+        font-size: 12px;
+    }
+    .time .time-second {
+        padding: 2px;
+        width: 22px;
+        font-size: 12px;
+        margin-left: 3px;
+    }
+    .option-list .option {
+        padding: 12px 15px;
+        font-size: 15px;
+    }
+    #score-box {
+        padding: 20px 10px;
+    }
+    #score-box i {
+        font-size: 70px;
+    }
+    #score-box .score-text {
+        font-size: 16px;
+    }
+}
+
+@media screen and (max-width: 375px) {
+    .app-container {
+        width: 98%;
+    }
+    .option-list .option {
+        font-size: 14px;
+        padding: 10px 12px;
+    }
+    #quiz-box #header h2, 
+    #quiz-box #header h3, 
+    .app-title {
+        font-size: 14px;
+    }
 }

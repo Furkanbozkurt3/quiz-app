@@ -1,5 +1,3 @@
-
-
 const quiz = new Quiz(soruListesi);
 const ui = new UI();
 
@@ -35,7 +33,6 @@ ui.btnNext.addEventListener("click" , function() {
 });
 
 function optionSelected(e){
-
     clearInterval(counter);
     clearInterval(counterLine);
     let selectedElement = e.target;
@@ -48,7 +45,6 @@ function optionSelected(e){
     const cevap = selectedElement.textContent[0];
     const soru = quiz.soruGetir();
 
-
     if(soru.cevabiKontrolEt(cevap))
     {
         quiz.dogruCevapSayisi += 1;
@@ -60,7 +56,7 @@ function optionSelected(e){
         selectedElement.insertAdjacentHTML("beforeend", ui.inCorrectIcon);
     }
 
-     quiz.soruIndex += 1;
+    quiz.soruIndex += 1;
     ui.disableAllOptions();
     ui.btnNext.classList.add("show");
 }
@@ -68,17 +64,15 @@ function optionSelected(e){
 ui.btnQuit.addEventListener("click" , function(){
     window.location.reload();
 })
-ui.btnReplay.addEventListener("click" , function(){
 
+ui.btnReplay.addEventListener("click" , function(){
     quiz.soruIndex = 0;
     quiz.dogruCevapSayisi = 0;
-
-    //butona tıklanmış gibi olur.
     ui.btnStart.click();
     ui.skoruGoster(quiz.dogruCevapSayisi, quiz.sorular.length);
 })
 
-let counter
+let counter;
 
 function startTimer(time) {
     counter = setInterval(timer, 1000);
@@ -95,22 +89,26 @@ function startTimer(time) {
             quiz.soruIndex += 1;
             ui.btnNext.classList.add("show");
         }
+        else { ui.timeText.textContent = "Kalan Süre";}
     }
 }
 
 let counterLine;
 
 function startTimerLine() {
-    let line_width = 0;
+    ui.timeLine.style.width = "0%";
+    let totalMs = 11000;
+    let currentMs = 0;
+    let intervalTime =25;
 
-    counterLine = setInterval(timer , 20);
+    counterLine = setInterval(timer , intervalTime);
 
     function timer() {
-        line_width += 1;
+        currentMs += intervalTime;
+        let percent = (currentMs / totalMs) * 100;
+        ui.timeLine.style.width = percent + "%";
 
-        ui.timeLine.computedStyleMap.width = line_width + "px";
-
-        if(line_width > 549)
+        if(currentMs >= totalMs)
         {
             clearInterval(counterLine);
         }
